@@ -15,6 +15,8 @@ import { ProductService } from './shared/product.service';
 import { FormsModule } from '@angular/forms';
 import {ReactiveFormsModule} from '@angular/forms';
 import { FilterPipe } from './pipe/filter.pipe';
+import { ReactiveRegistComponent } from './reactive-regist/reactive-regist.component';
+import { ReactiveFormComponent } from './reactive-form/reactive-form.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,9 @@ import { FilterPipe } from './pipe/filter.pipe';
     StarsComponent,
     ProductDetailComponent,
     HomeComponent,
-    FilterPipe
+    FilterPipe,
+    ReactiveRegistComponent,
+    ReactiveFormComponent
   ],
   imports: [
     BrowserModule,
