@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, AbstractControl, Validators } from '@angular/forms';
+import {equalValidator, mobileAsyncValidator, mobileValidator} from '../validator/validators';
 
 @Component({
   selector: 'app-reactive-regist',
@@ -12,7 +13,7 @@ export class ReactiveRegistComponent implements OnInit {
   //   var myreg = /^(((24[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/;
   //   let valid = myreg.test(control.value);
   //   console.log('mobile的校验结果:'+valid);
-  //   return valid?null:{mobile: true}; 
+  //   return valid?null:{mobile: true};
   // }
 
   // equalValidator(group: FormGroup): any {
@@ -28,11 +29,11 @@ export class ReactiveRegistComponent implements OnInit {
   constructor(fb: FormBuilder) {
     this.formModel = fb.group({
       username: ['', [Validators.required, Validators.minLength(6)]], // 1默认值 2校验器
-      mobile: ['', this.mobileValidator],
+      mobile: ['', mobileValidator, mobileAsyncValidator],
       passwordsGroup: fb.group({
-        password: [''],
+        password: ['', Validators.minLength(6)],
         pconfirm: ['']
-      }, {validator: this.equalValidator})
+      }, {validator: equalValidator})
     })
    }
 
@@ -45,6 +46,10 @@ export class ReactiveRegistComponent implements OnInit {
     let errors:any = this.formModel.get("username").errors;
     console.log('username的错误信息', errors)
     console.log(this.formModel.value)
+
+    if(this.formModel.valid) {
+        console.log(this.formModel.value)
+    }
   }
 
 }
